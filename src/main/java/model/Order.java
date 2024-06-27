@@ -13,11 +13,11 @@ public class Order {
     private Customer customer;
     private String billingAddress;
     private String shippingAddress;
-    private String orderStatus; // "new", "processing", "delivering", "delivered", "return"
     private String paymentMethod;
+    private String orderStatus; // "new", "processing", "delivering", "delivered", "return"
     private String paymentStatus;
-    private double totalAmountPaid;
-    private double remainingAmountDue;
+    private double paidAmount;
+    private double remainingAmount;
     private Date orderDate;
     private Date deliveryDate;
 }

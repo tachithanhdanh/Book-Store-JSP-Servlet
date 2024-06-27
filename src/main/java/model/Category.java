@@ -7,6 +7,6 @@ import lombok.Setter;
 
 @AllArgsConstructor @NoArgsConstructor @Getter @Setter
 public class Category {
-    private int categoryId;
+    private String categoryId;
     private String categoryName;
 }

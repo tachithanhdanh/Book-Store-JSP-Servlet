@@ -11,7 +11,9 @@ public class Book {
     private String title;
     private Author author;
     private int publicationYear;
-    private double price;
+    private double importPrice;
+    private double listPrice;
+    private double sellingPrice;
     private int quantity;
     private Category category;
     private String description;

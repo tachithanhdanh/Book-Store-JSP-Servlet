@@ -9,7 +9,7 @@ import lombok.Setter;
 public class OrderDetail {
     private String orderDetailId;
     private Order order;
-    private int bookId;
+    private Book book;
     private int quantity;
     private double listPrice;
     private double discount;

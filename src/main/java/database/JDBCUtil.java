@@ -46,9 +46,10 @@ public class JDBCUtil {
             System.out.println("Database URL: " + metaData.getURL());
             System.out.println("Database username: " + metaData.getUserName());
             System.out.println("Database product name: " + metaData.getDatabaseProductName());
-            System.out.println("Database product version: " + metaData.getDatabaseProductVersion());1
+            System.out.println("Database product version: " + metaData.getDatabaseProductVersion());
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Print info failed");
+            System.out.println(e.getMessage());
         } catch (NullPointerException e) {
             System.out.println("Connection is null");
         }

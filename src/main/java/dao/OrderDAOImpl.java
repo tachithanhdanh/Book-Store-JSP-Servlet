@@ -17,7 +17,7 @@ public class OrderDAOImpl implements OrderDAO {
             Connection con = JDBCUtil.getConnection();
 
             // Step 2: Create a statement
-            String sql = "SELECT * FROM order";
+            String sql = "SELECT * FROM `order`";
             PreparedStatement st = con.prepareStatement(sql);
 
             // Step 3: Execute the query
@@ -46,7 +46,7 @@ public class OrderDAOImpl implements OrderDAO {
             Connection con = JDBCUtil.getConnection();
 
             // Step 2: Create a statement
-            String sql = "SELECT * FROM order WHERE order_id=?";
+            String sql = "SELECT * FROM `order` WHERE order_id=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, order.getOrderId());
 
@@ -75,7 +75,7 @@ public class OrderDAOImpl implements OrderDAO {
             Connection con = JDBCUtil.getConnection();
 
             // Step 2: Create a statement
-            String sql = "INSERT INTO order("
+            String sql = "INSERT INTO `order`("
                     + "order_id, customer_id, billing_address, shipping_address, "
                     + "payment_method, order_status, payment_status, paid_amount, "
                     + "remaining_amount, order_date, delivery_date) "
@@ -126,7 +126,7 @@ public class OrderDAOImpl implements OrderDAO {
             Connection con = JDBCUtil.getConnection();
 
             // Step 2: Create a statement
-            String sql = "DELETE FROM order WHERE order_id=?";
+            String sql = "DELETE FROM `order` WHERE order_id=?";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, order.getOrderId());
 
@@ -143,6 +143,7 @@ public class OrderDAOImpl implements OrderDAO {
             System.out.println("Delete failed for order");
             System.out.println(e.getMessage());
         }
+        return result;
     }
 
     @Override
@@ -162,7 +163,7 @@ public class OrderDAOImpl implements OrderDAO {
             Connection con = JDBCUtil.getConnection();
 
             // Step 2: Create a statement
-            String sql = "UPDATE order SET "
+            String sql = "UPDATE `order` SET "
                     + "customer_id=?, billing_address=?, shipping_address=?, "
                     + "payment_method=?, order_status=?, payment_status=?, "
                     + "paid_amount=?, remaining_amount=?, order_date=?, delivery_date=? "

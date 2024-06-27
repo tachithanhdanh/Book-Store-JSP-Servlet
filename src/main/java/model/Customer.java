@@ -1,13 +1,11 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Date;
 
 @Getter @Setter @AllArgsConstructor @NoArgsConstructor
+@ToString @EqualsAndHashCode
 public class Customer {
     private String customerId;
     private String username;

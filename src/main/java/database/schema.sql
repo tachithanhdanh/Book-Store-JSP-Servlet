@@ -73,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `date_of_birth` date DEFAULT NULL,
   `phone_number` varchar(12) DEFAULT NULL,
   `email` varchar(512) DEFAULT NULL,
-  `sub_to_newsletter` tinyint DEFAULT NULL,
+  `subscribe_to_newsletter` tinyint DEFAULT NULL,
   PRIMARY KEY (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 

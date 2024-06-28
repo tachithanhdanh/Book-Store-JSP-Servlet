@@ -10,16 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b84d0966-5280-4071-bb75-6bd488392bb4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/BasicOrderDAOTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/dao/AuthorDAOImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/dao/BookDAOImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/dao/CategoryDAOImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/dao/CustomerDAOImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/dao/notes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/OrderDetailDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/OrderDetailDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/JDBCUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/JDBCUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/BookDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/BookDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/generate_data.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/generate_data.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/database/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/schema.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Author.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Author.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Book.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,14 +32,19 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="Interface" />
         <option value="JUnit5 Test Class" />
-        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="JUnit" name="CategoryDAOImplTest.delete" />
+    </enabled-run-configurations>
   </component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -58,6 +66,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -72,6 +83,15 @@
   "keyToString": {
     "Application.BasicOrderDAOTest.executor": "Run",
     "Application.Test.executor": "Run",
+    "JUnit.AuthorDAOImplTest.executor": "Coverage",
+    "JUnit.AuthorDAOImplTest.selectById.executor": "Coverage",
+    "JUnit.BookDAOImplTest.executor": "Coverage",
+    "JUnit.CategoryDAOImplTest.SqlInjectionSelect.executor": "Run",
+    "JUnit.CategoryDAOImplTest.delete.executor": "Run",
+    "JUnit.CategoryDAOImplTest.executor": "Coverage",
+    "JUnit.CategoryDAOImplTest.insert.executor": "Run",
+    "JUnit.CustomerDAOImplTest.executor": "Run",
+    "JUnit.dao in Book-Store-JSP-Servlet.executor": "Coverage",
     "RunOnceActivity.OpenDatabaseViewOnStart": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -90,6 +110,7 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.4848206",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
@@ -108,9 +129,8 @@
       <recent name="dao" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.BasicOrderDAOTest">
-    <configuration name="BasicOrderDAOTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.BasicOrderDAOTest" />
+  <component name="RunManager" selected="JUnit.CustomerDAOImplTest">
+    <configuration name="AuthorDAOImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Book-Store-JSP-Servlet" />
       <extension name="coverage">
         <pattern>
@@ -118,19 +138,62 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="dao" />
+      <option name="MAIN_CLASS_NAME" value="dao.AuthorDAOImplTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="dao.Test" />
+    <configuration name="BookDAOImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Book-Store-JSP-Servlet" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="database.*" />
+          <option name="PATTERN" value="dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="dao" />
+      <option name="MAIN_CLASS_NAME" value="dao.BookDAOImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CategoryDAOImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Book-Store-JSP-Servlet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dao" />
+      <option name="MAIN_CLASS_NAME" value="dao.CategoryDAOImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CustomerDAOImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Book-Store-JSP-Servlet" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dao.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dao" />
+      <option name="MAIN_CLASS_NAME" value="dao.CustomerDAOImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="dao in Book-Store-JSP-Servlet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Book-Store-JSP-Servlet" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/dao" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -224,7 +287,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.BasicOrderDAOTest" />
+        <item itemvalue="JUnit.CustomerDAOImplTest" />
+        <item itemvalue="JUnit.dao in Book-Store-JSP-Servlet" />
+        <item itemvalue="JUnit.CategoryDAOImplTest" />
+        <item itemvalue="JUnit.BookDAOImplTest" />
+        <item itemvalue="JUnit.AuthorDAOImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -263,7 +330,9 @@
       <workItem from="1719393315586" duration="136000" />
       <workItem from="1719412308383" duration="2038000" />
       <workItem from="1719458644872" duration="1454000" />
-      <workItem from="1719470660266" duration="4767000" />
+      <workItem from="1719470660266" duration="4921000" />
+      <workItem from="1719541276531" duration="1157000" />
+      <workItem from="1719542641968" duration="10226000" />
     </task>
     <servers />
   </component>
@@ -271,8 +340,20 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="4d23682c-82ba-47d0-85c7-62ee7f5e0a04" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="4d23682c-82ba-47d0-85c7-62ee7f5e0a04">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State />
@@ -280,5 +361,20 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Book_Store_JSP_Servlet$AuthorDAOImplTest_selectById.ic" NAME="AuthorDAOImplTest.selectById Coverage Results" MODIFIED="1719550968792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Book_Store_JSP_Servlet$AuthorDAOImplTest.ic" NAME="AuthorDAOImplTest Coverage Results" MODIFIED="1719552508072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Book_Store_JSP_Servlet$BookDAOImplTest.ic" NAME="BookDAOImplTest Coverage Results" MODIFIED="1719553964266" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dao.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/Book_Store_JSP_Servlet$dao_in_Book_Store_JSP_Servlet.ic" NAME="dao in Book-Store-JSP-Servlet Coverage Results" MODIFIED="1719554090018" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Book_Store_JSP_Servlet$CategoryDAOImplTest.ic" NAME="CategoryDAOImplTest Coverage Results" MODIFIED="1719554062088" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>dao.*</FILTER>
+    </SUITE>
   </component>
 </project>

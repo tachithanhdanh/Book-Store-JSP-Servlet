@@ -167,7 +167,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     + "username=?, password=?, full_name=?,"
                     + "gender=?, billing_address=?, shipping_address=?,"
                     + "invoice_address=?, date_of_birth=?, phone_number=?,"
-                    + "email=?, subscribe_to_newsletter=?"
+                    + "email=?, subscribe_to_newsletter=? "
                     + "WHERE customer_id=?";
             PreparedStatement st = con.prepareStatement(sql);
 

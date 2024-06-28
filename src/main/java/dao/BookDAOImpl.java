@@ -78,12 +78,12 @@ public class BookDAOImpl implements BookDAO {
 
             // Step 2: Create a statement
             String sql = "INSERT INTO book"
-                    + "(book_id, title, author_id, publication_year, import_price, "
+                    + "(book_id, book_title, author_id, publication_year, import_price, "
                     + "list_price, selling_price, quantity, category_id, description)"
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, book.getBookId());
-            st.setString(2, book.getTitle());
+            st.setString(2, book.getBookTitle());
             st.setString(3, book.getAuthor().getAuthorId());
             st.setInt(4, book.getPublicationYear());
             st.setDouble(5, book.getImportPrice());
@@ -164,11 +164,11 @@ public class BookDAOImpl implements BookDAO {
             Connection con = JDBCUtil.getConnection();
 
             // Step 2: Create a statement
-            String sql = "UPDATE book SET title=?, author_id=?, publication_year=?, "
+            String sql = "UPDATE book SET book_title=?, author_id=?, publication_year=?, "
                     + "import_price=?, list_price=?, selling_price=?, quantity=?, "
                     + "category_id=?, description=? WHERE book_id=?";
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, book.getTitle());
+            st.setString(1, book.getBookTitle());
             st.setString(2, book.getAuthor().getAuthorId());
             st.setInt(3, book.getPublicationYear());
             st.setDouble(4, book.getImportPrice());
@@ -198,7 +198,7 @@ public class BookDAOImpl implements BookDAO {
     @Override
     public Book extractFromResultSet(java.sql.ResultSet rs) throws SQLException {
         String bookId = rs.getString("book_id");
-        String title = rs.getString("title");
+        String bookTitle = rs.getString("book_title");
         String authorId = rs.getString("author_id");
         int publicationYear = rs.getInt("publication_year");
         double importPrice = rs.getDouble("import_price");
@@ -213,7 +213,7 @@ public class BookDAOImpl implements BookDAO {
         Author author = authorDAO.selectById(tempAuthor);
         CategoryDAO categoryDAO = new CategoryDAOImpl();
         Category category = categoryDAO.selectById(new Category(categoryId, ""));
-        return new Book(bookId, title, author, publicationYear,
+        return new Book(bookId, bookTitle, author, publicationYear,
                         importPrice, listPrice, sellingPrice,
                         quantity, category, description);
     }

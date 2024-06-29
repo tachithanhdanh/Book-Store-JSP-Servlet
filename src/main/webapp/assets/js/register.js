@@ -30,6 +30,12 @@ password.addEventListener('keyup', (e) => {
 });
 
 username.addEventListener('keyup', (e) => {
+    if (e.target.value) {
+        errorUsername.innerHTML = "";
+    }
+});
+
+username.addEventListener('keyup', (e) => {
     if (!usernameRegex.test(e.target.value)) {
         usernameHelp.style.display = "block";
     } else {

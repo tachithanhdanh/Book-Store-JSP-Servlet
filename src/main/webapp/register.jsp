@@ -1,3 +1,11 @@
+<%--<jsp:useBean id="email" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="phoneNumber" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="invoiceAddress" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="shippingAddress" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="billingAddress" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="dateOfBirth" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="fullName" scope="request" type="java.lang.String"/>--%>
+<%--<jsp:useBean id="username" scope="request" type="java.lang.String"/>--%>
 <%--
   Created by IntelliJ IDEA.
   User: LAPTOP ACER
@@ -29,9 +37,9 @@
                     <div class="h3">Account</div> <!-- h3: heading 3 -->
                     <div class="mb-3"> <!-- mb-3: margin bottom 3 -->
                         <label for="username" class="form-label">Username<span class="required">*</span></label>
-                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" required>
+                        <input type="text" class="form-control" id="username" name="username" aria-describedby="usernameHelp" required value="${username}">
                         <div id="usernameHelp" class="form-text" style="display: none">Username contains lowercase letters and numbers but starts with a lowercase letter, length 6-30.</div>
-                        <div id="errorUsername" class="required"></div>
+                        <div id="errorUsername" class="required">${errorUsername}</div>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password<span class="required">*</span></label>
@@ -43,51 +51,52 @@
                         <label for="passwordConfirm" class="form-label">Confirm your password<span class="required">*</span></label>
                         <input type="password" class="form-control" id="passwordConfirm" name="passwordConfirm" aria-describedby="passwordConfirmHelp" required>
                         <div id="passwordConfirmHelp" class="form-text" hidden>Retype your password</div>
-                        <div id="errorPasswordConfirm" class="required"></div>
+                        <div id="errorPasswordConfirm" class="required">${errorPasswordConfirm}</div>
                     </div>
                     <hr/>
                     <div class="h3">Customer information</div>
                     <div class="mb-3">
                         <label for="fullName" class="form-label">Full name</label>
-                        <input type="text" class="form-control" id="fullName" name="fullName">
+                        <input type="text" class="form-control" id="fullName" name="fullName" value="${fullName}">
                     </div>
                     <div class="mb-3">
+                        <% String gender = request.getParameter("gender"); %>
                         <label for="gender" class="form-label">Gender</label>
                         <select id="gender" class="form-select" name="gender">
-                            <option selected></option>
-                            <option value="Male">Male</option>
-                            <option value="Female">Female</option>
+                            <option value="" <%= (gender == null || gender.isEmpty()) ? "selected" : "" %>></option>
+                            <option value="Male" <%= "Male".equals(gender) ? "selected" : "" %>>Male</option>
+                            <option value="Female" <%= "Female".equals(gender) ? "selected" : "" %>>Female</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="dateOfBirth" class="form-label">Date of birth</label>
-                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth">
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" value="${dateOfBirth}">
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="h3">Address</div>
                     <div class="mb-3">
                         <label for="billingAddress" class="form-label">Billing Address</label>
-                        <input type="text" class="form-control" id="billingAddress" name="billingAddress" aria-describedby="billingAddressHelp">
+                        <input type="text" class="form-control" id="billingAddress" name="billingAddress" aria-describedby="billingAddressHelp" value="${billingAddress}">
                         <div id="billingAddressHelp" class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="shippingAddress" class="form-label">Shipping Address</label>
-                        <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" aria-describedby="shippingAddressHelp">
+                        <input type="text" class="form-control" id="shippingAddress" name="shippingAddress" aria-describedby="shippingAddressHelp" value="${shippingAddress}">
                         <div id="shippingAddressHelp" class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="invoiceAddress" class="form-label">Invoice Address</label>
-                        <input type="text" class="form-control" id="invoiceAddress" name=invoiceAddress" aria-describedby="invoiceAddressHelp">
+                        <input type="text" class="form-control" id="invoiceAddress" name="invoiceAddress" aria-describedby="invoiceAddressHelp" value="${invoiceAddress}">
                         <div id="invoiceAddressHelp" class="form-text"></div>
                     </div>
                     <div class="mb-3">
                         <label for="phoneNumber" class="form-label">Phone number</label>
-                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber">
+                        <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" value="${phoneNumber}">
                     </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email">
+                        <input type="email" class="form-control" id="email" name="email" value="${email}">
                         <div id="errorEmail" class="required"></div>
                     </div>
                     <hr/>

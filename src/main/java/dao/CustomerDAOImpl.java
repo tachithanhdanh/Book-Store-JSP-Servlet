@@ -66,6 +66,33 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    public boolean selectByUsername(String username) {
+        Customer resultCustomer = null;
+        try {
+            // Step 1: Open a database connection
+            Connection con = JDBCUtil.getConnection();
+
+            // Step 2: Create the statement
+            String sql = "SELECT * FROM customer WHERE username=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, username);
+
+            // Step 3: Execute the SQL query
+            System.out.println(sql + "\n");
+            ResultSet rs = st.executeQuery();
+
+            // Step 4: Process the result set
+            if (rs.next()) {
+                resultCustomer = extractFromResultSet(rs);
+            }
+        } catch (SQLException e) {
+            System.out.println("Select by id failed for customer");
+            System.out.println(e.getMessage());
+        }
+        return resultCustomer != null;
+    }
+
+    @Override
     public int insert(Customer customer) {
         int result = 0;
         try {

@@ -12,6 +12,8 @@ public interface CustomerDAO extends DAOInterface<Customer> {
     @Override
     Customer selectById(Customer customer);
 
+    boolean selectByUsername(String username);
+
     @Override
     int insert(Customer customer);
 

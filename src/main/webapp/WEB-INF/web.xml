@@ -26,4 +26,16 @@
         <servlet-name>register</servlet-name>
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
+
+    <!-- Create servlet name -->
+    <servlet>
+        <servlet-name>register-success</servlet-name>
+        <jsp-file>/register-success.jsp</jsp-file>
+    </servlet>
+
+    <!-- Map the URL pattern to the servlet -->
+    <servlet-mapping>
+        <servlet-name>register-success</servlet-name>
+        <url-pattern>/register-success</url-pattern>
+    </servlet-mapping>
 </web-app>

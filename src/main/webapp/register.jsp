@@ -14,13 +14,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- responsive -->
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/js/register.js" type="text/javascript" defer></script> <!-- link to register.js -->
+    <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/assets/js/register.js" type="text/javascript" defer></script> <!-- link to register.js -->
     <title>Register</title>
     <style>
         .required {
@@ -29,9 +30,14 @@
     </style>
 </head>
 <body>
+    <%
+        if (session.getAttribute("customer") != null) {
+            response.sendRedirect(request.getContextPath() + "/home");
+        }
+    %>
     <div class="container">
         <div class="h1 text-lg-center mt-3">REGISTER NEW ACCOUNT</div> <!-- h1: heading 1, text larger center -->
-        <form method="post" action="register-servlet">
+        <form method="post" action="${pageContext.request.contextPath}/register-servlet">
             <div class="row"> <!-- row: a row in a grid system -->
                 <div class="col-lg-6"> <!-- col-lg-6: column large 6, only apply for screen with width >= 996px -->
                     <div class="h3">Account</div> <!-- h3: heading 3 -->
@@ -113,6 +119,7 @@
                         <input class="form-check-input" type="checkbox" value="" id="subscribeToNewsletter">
                     </div>
                     <input id="submit" class="btn btn-primary" type="submit" value="Submit" disabled>
+                    <div>Already registered? <a href="${pageContext.request.contextPath}/login">Login here</a></div>
                 </div>
             </div>
         </form>

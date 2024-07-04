@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,10 +44,18 @@
             </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Nội dung" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Tìm</button>
-                <a href="${pageContext.request.contextPath}/register" class="btn btn-primary active ml-1" role="button" aria-pressed="true" style="white-space: nowrap;">
-                    Đăng nhập
-                </a>
+                <button class="btn btn-outline-success me-2" type="submit">Tìm</button>
+                <div class="w-50 text-center">
+                    <c:if test="${customer == null}">
+                        <a href="${pageContext.request.contextPath}/login" class="btn btn-primary active" role="button" aria-pressed="true" style="white-space: nowrap;">
+                            Đăng nhập
+                        </a>
+                    </c:if>
+                    <c:if test="${customer != null}">
+                    Hello <strong>${customer.username}</strong><br>
+                    <a href="${pageContext.request.contextPath}/logout">Logout</a>
+                    </c:if>
+                </div>
             </form>
         </div>
     </div>

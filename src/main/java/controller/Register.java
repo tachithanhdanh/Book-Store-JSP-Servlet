@@ -43,10 +43,6 @@ public class Register extends HttpServlet {
         request.setAttribute("email", email);
         request.setAttribute("subscribeToNewsletter", subscribeToNewsletter);
 
-        if (gender.isEmpty()) {
-            gender = null;
-        }
-
         String errorUsername = "";
         String errorPasswordConfirm = "";
 
@@ -96,7 +92,7 @@ public class Register extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        response.sendRedirect("/register");
     }
 
     public void destroy() {

@@ -15,7 +15,7 @@ const acceptTermCondition = document.querySelector('#acceptTermCondition');
 
 passwordConfirm.addEventListener('keyup', (e) => {
     if (password.value !== e.target.value) {
-        errorPasswordConfirm.innerHTML="Password did not match!";
+        errorPasswordConfirm.innerHTML="Password does not match!";
     } else {
         errorPasswordConfirm.innerHTML="";
     }
@@ -23,7 +23,7 @@ passwordConfirm.addEventListener('keyup', (e) => {
 
 password.addEventListener('keyup', (e) => {
     if (passwordConfirm.value !== e.target.value) {
-        errorPasswordConfirm.innerHTML="Password did not match!";
+        errorPasswordConfirm.innerHTML="Password does not match!";
     } else {
         errorPasswordConfirm.innerHTML="";
     }

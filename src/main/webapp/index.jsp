@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <script src="assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <link href="${pageContext.request.contextPath}/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <script src="${pageContext.request.contextPath}/assets/js/popper.min.js" type="text/javascript"></script>
+    <script src="${pageContext.request.contextPath}/assets/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
     <title>Website bán hàng</title>
 </head>
 <body>
@@ -45,17 +46,30 @@
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Nội dung" aria-label="Search">
                 <button class="btn btn-outline-success me-2" type="submit">Tìm</button>
-                <div class="w-50 text-center">
                     <c:if test="${loggedCustomer == null}">
+                <div class="w-50 text-center">
                         <a href="${pageContext.request.contextPath}/login" class="btn btn-primary active" role="button" aria-pressed="true" style="white-space: nowrap;">
-                            Đăng nhập
+                            Log in
                         </a>
+                </div>
                     </c:if>
                     <c:if test="${loggedCustomer != null}">
-                    Hello <strong>${loggedCustomer.username}</strong><br>
-                    <a href="${pageContext.request.contextPath}/logout">Logout</a>
+<%--                    Hello <strong>${loggedCustomer.username}</strong><br>--%>
+<%--                    <a href="${pageContext.request.contextPath}/logout">Logout</a>--%>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="#">My order</a></li>
+                                <li><a class="dropdown-item" href="#">Notifications</a></li>
+                                <li><a class="dropdown-item" href="#">Account information</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/change-password.jsp">Change password</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                            </ul>
+                        </div>
                     </c:if>
-                </div>
             </form>
         </div>
     </div>

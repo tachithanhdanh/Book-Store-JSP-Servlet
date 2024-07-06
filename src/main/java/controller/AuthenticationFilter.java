@@ -14,7 +14,7 @@ import utils.HashGeneratorUtils;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/userOnlyTest.jsp", "/", "/home", "/index.jsp"})
+@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/*"})
 public class AuthenticationFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -91,7 +91,7 @@ public class AuthenticationFilter implements Filter {
 
         }
         String url = httpRequest.getRequestURI().substring(1);
-        if (!loggedIn && "userOnlyTest.jsp".equals(url)) {
+        if (!loggedIn && url.startsWith("user")) {
             HttpSession newSession = httpRequest.getSession();
             newSession.setAttribute("error", "You have to log in first to access the page!");
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/login" + "?redirect=" + url);

@@ -26,17 +26,20 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        boolean rememberMe = "true".equals(request.getParameter("rememberMe"));
+        boolean stayLoggedIn = "true".equals(request.getParameter("stayLoggedIn"));
 
         CustomerDAO customerDAO = new CustomerDAOImpl();
 
         Customer customer = customerDAO.selectByUsernameAndPassword(username, password);
         HttpSession session = request.getSession();
-        String url = "";
+        String url = request.getParameter("redirect");
+        if (url == null || url.isEmpty()) {
+            url = "/home";
+        }
         if (customer != null) {
             session.setAttribute("loggedCustomer", customer);
-            url = "/home";
-            if (rememberMe) {
+//            url = "/home";
+            if (stayLoggedIn) {
                 // Create new token (selector and validator)
                 CustomerAuth newToken = new CustomerAuth();
 
@@ -79,6 +82,7 @@ public class Login extends HttpServlet {
         response.setHeader("Pragma", "no-cache");
         // Proxy Server
         response.setHeader("Expires", "0");
+        System.out.println("Redirecting to: " + url);
 
         response.sendRedirect(url);
     }

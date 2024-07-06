@@ -22,6 +22,9 @@
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <p style="color: red;">${error}</p>
         <% session.removeAttribute("error"); %>
+<%--        <c:if test="${param.redirect != null}">--%>
+            <input type="hidden" name="redirect" value="${param.redirect}">
+<%--        </c:if>--%>
         <div class="form-floating">
             <input type="text" class="form-control" id="username" placeholder="Username" name="username">
             <label for="username">Username</label>
@@ -32,9 +35,9 @@
         </div>
 
         <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="true" id="rememberMe" name="rememberMe">
-            <label class="form-check-label" for="rememberMe">
-                Remember me
+            <input class="form-check-input" type="checkbox" value="true" id="stayLoggedIn" name="stayLoggedIn">
+            <label class="form-check-label" for="stayLoggedIn">
+                Stay logged in
             </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>

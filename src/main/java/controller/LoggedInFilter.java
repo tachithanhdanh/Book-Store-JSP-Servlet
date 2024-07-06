@@ -23,7 +23,7 @@ public class LoggedInFilter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         System.out.println("Filter called");
-        if (session.getAttribute("customer") != null) {
+        if (session.getAttribute("loggedCustomer") != null) {
             res.sendRedirect("/home");
             return;
         }

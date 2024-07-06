@@ -10,7 +10,6 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.CustomerAuth;
 import org.apache.commons.lang3.RandomStringUtils;
-import utils.HashGenerationException;
 import utils.HashGeneratorUtils;
 
 import java.io.IOException;
@@ -26,6 +25,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        password = HashGeneratorUtils.generateSHA256withDefaultSalt(password);
         boolean stayLoggedIn = "true".equals(request.getParameter("stayLoggedIn"));
 
         CustomerDAO customerDAO = new CustomerDAOImpl();
@@ -46,12 +46,7 @@ public class Login extends HttpServlet {
                 String selector = RandomStringUtils.randomAlphanumeric(12);
                 String rawValidator = RandomStringUtils.randomAlphanumeric(64);
                 String hashedValidator = null;
-                try {
-                    hashedValidator = HashGeneratorUtils.generateSHA256(rawValidator);
-                } catch (HashGenerationException e) {
-                    System.out.println("Error occurred when hashing the validator");
-                    System.out.println(e.getMessage());
-                }
+                hashedValidator = HashGeneratorUtils.generateSHA256(rawValidator);
 
                 newToken.setSelector(selector);
                 newToken.setValidator(hashedValidator);

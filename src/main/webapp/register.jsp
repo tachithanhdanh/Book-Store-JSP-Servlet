@@ -76,7 +76,12 @@
                     </div>
                     <div class="mb-3">
                         <label for="dateOfBirth" class="form-label">Date of birth</label>
-                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" value="${dateOfBirth}">
+                        <% String dateOfBirth = request.getParameter("dateOfBirth");
+                            if (dateOfBirth == null || dateOfBirth.isEmpty()) {
+                                dateOfBirth = "2000-01-01";
+                            }
+                            %> <!-- default date of birth -->
+                        <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth" value="<%=dateOfBirth%>" placeholder="<%=dateOfBirth%>">
                     </div>
                 </div>
                 <div class="col-lg-6">

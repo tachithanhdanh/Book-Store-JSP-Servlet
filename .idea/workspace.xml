@@ -10,14 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b84d0966-5280-4071-bb75-6bd488392bb4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/UserFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/userOnlyTest.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/database/default-password" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoggedInFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LoggedInFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Logout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Logout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/HashGenerationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/HashGeneratorUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/HashGeneratorUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -361,7 +361,7 @@
       <workItem from="1719743219430" duration="3657000" />
       <workItem from="1719883493408" duration="937000" />
       <workItem from="1720065718214" duration="10020000" />
-      <workItem from="1720250769662" duration="10382000" />
+      <workItem from="1720250769662" duration="12835000" />
     </task>
     <servers />
   </component>

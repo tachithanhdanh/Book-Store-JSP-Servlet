@@ -10,6 +10,7 @@ import dao.CustomerDAOImpl;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.ServletException;
+import utils.HashGeneratorUtils;
 
 @WebServlet(name = "Register", value = "/register-servlet")
 public class Register extends HttpServlet {
@@ -73,9 +74,13 @@ public class Register extends HttpServlet {
             // Create a new customer
             // Insert the new customer into the database
             // Redirect to the register-success page
-            url = "/register-success";
+//            url = "/register-success";
+            url = "/login";
+            HttpSession session = request.getSession();
+            session.setAttribute("error", "Registration successful! Please login to continue.");
             Random rd = new Random();
             String customerId = "" + System.currentTimeMillis() + rd.nextInt(1000);
+            password = HashGeneratorUtils.generateSHA256withDefaultSalt(password);
             Customer customer = new Customer(customerId, username, password,
                     fullName, gender, billingAddress,
                     shippingAddress, invoiceAddress,

@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.CustomerAuth;
 import org.apache.commons.lang3.RandomStringUtils;
-import utils.HashGenerationException;
 import utils.HashGeneratorUtils;
 
 import java.io.IOException;
@@ -55,43 +54,38 @@ public class AuthenticationFilter implements Filter {
                 CustomerAuthDAO customerAuthDAO = new CustomerAuthDAOImpl();
                 CustomerAuth customerToken = customerAuthDAO.selectBySelector(selectorCookie.getValue());
 
-                try {
-                    if (customerToken != null) {
-                        // validate the token
-                        String hashedValidatorDatabase = customerToken.getValidator();
-                        String rawValidator = validatorCookie.getValue();
-                        String hashedValidatorCookie = HashGeneratorUtils.generateSHA256(rawValidator);
+                if (customerToken != null) {
+                    // validate the token
+                    String hashedValidatorDatabase = customerToken.getValidator();
+                    String rawValidator = validatorCookie.getValue();
+                    String hashedValidatorCookie = HashGeneratorUtils.generateSHA256(rawValidator);
 
 
-                        // Update the token in database
-                        if (hashedValidatorDatabase.equals(hashedValidatorCookie)) {
-                            // if the token is valid, set the session
-                            session = httpRequest.getSession();
-                            session.setAttribute("loggedCustomer", customerToken.getCustomer());
-                            loggedIn = true;
+                    // Update the token in database
+                    if (hashedValidatorDatabase.equals(hashedValidatorCookie)) {
+                        // if the token is valid, set the session
+                        session = httpRequest.getSession();
+                        session.setAttribute("loggedCustomer", customerToken.getCustomer());
+                        loggedIn = true;
 
-                            // create new token to replace the old one
-                            String newSelector = RandomStringUtils.randomAlphanumeric(12);
-                            String newRawValidator = RandomStringUtils.randomAlphanumeric(64);
-                            String newHashedValidator = HashGeneratorUtils.generateSHA256(newRawValidator);
+                        // create new token to replace the old one
+                        String newSelector = RandomStringUtils.randomAlphanumeric(12);
+                        String newRawValidator = RandomStringUtils.randomAlphanumeric(64);
+                        String newHashedValidator = HashGeneratorUtils.generateSHA256(newRawValidator);
 
-                            // update the token in database
-                            customerToken.setSelector(newSelector);
-                            customerToken.setValidator(newHashedValidator);
-                            customerAuthDAO.update(customerToken);
+                        // update the token in database
+                        customerToken.setSelector(newSelector);
+                        customerToken.setValidator(newHashedValidator);
+                        customerAuthDAO.update(customerToken);
 
-                            // update cookie
-                            selectorCookie.setValue(newSelector);
-                            selectorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
-                            validatorCookie.setValue(newRawValidator);
-                            validatorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
-                            httpResponse.addCookie(selectorCookie);
-                            httpResponse.addCookie(validatorCookie);
-                        }
+                        // update cookie
+                        selectorCookie.setValue(newSelector);
+                        selectorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
+                        validatorCookie.setValue(newRawValidator);
+                        validatorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
+                        httpResponse.addCookie(selectorCookie);
+                        httpResponse.addCookie(validatorCookie);
                     }
-                } catch (HashGenerationException e) {
-                    System.out.println("Error occurred when hashing the validator");
-                    System.out.println(e.getMessage());
                 }
             }
 

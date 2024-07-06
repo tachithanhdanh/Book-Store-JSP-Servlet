@@ -15,20 +15,29 @@ public class HashGeneratorUtils {
 
     }
 
-    public static String generateMD5(String message) throws HashGenerationException {
+    public static final String salt = "DhvLt5:Fg0W@hNR1yk?#";
+
+    public static String generateMD5(String message) {
         return hashString(message, "MD5");
     }
 
-    public static String generateSHA1(String message) throws HashGenerationException {
+    public static String generateSHA1(String message) {
         return hashString(message, "SHA-1");
     }
 
-    public static String generateSHA256(String message) throws HashGenerationException {
+    public static String generateSHA256(String message) {
         return hashString(message, "SHA-256");
     }
 
-    private static String hashString(String message, String algorithm)
-            throws HashGenerationException {
+    public static String generateSHA256withSalt(String message, String salt) {
+        return hashString(message + salt, "SHA-256");
+    }
+
+    public static String generateSHA256withDefaultSalt(String message) {
+        return hashString(message + HashGeneratorUtils.salt, "SHA-256");
+    }
+
+    private static String hashString(String message, String algorithm) {
 
         try {
             MessageDigest digest = MessageDigest.getInstance(algorithm);
@@ -36,8 +45,7 @@ public class HashGeneratorUtils {
 
             return convertByteArrayToHexString(hashedBytes);
         } catch (NoSuchAlgorithmException ex) {
-            throw new HashGenerationException(
-                    "Could not generate hash from String", ex);
+            return "The algorithm '" + algorithm + "' is not supported.";
         }
     }
 

@@ -32,8 +32,8 @@
         </div>
 
         <div class="form-check text-start my-3">
-            <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
+            <input class="form-check-input" type="checkbox" value="true" id="rememberMe" name="rememberMe">
+            <label class="form-check-label" for="rememberMe">
                 Remember me
             </label>
         </div>

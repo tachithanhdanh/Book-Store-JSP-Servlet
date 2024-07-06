@@ -119,6 +119,17 @@ CREATE TABLE IF NOT EXISTS `order_detail` (
                                               CONSTRAINT `FK_order_detail_order` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping structure for table book_store.customer_auth
+CREATE TABLE IF NOT EXISTS `customer_auth` (
+                                               `auth_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+                                               `selector` varchar(12) NOT NULL,
+                                               `validator` varchar(64) NOT NULL,
+                                               `customer_id` char(50) NOT NULL DEFAULT '',
+                                               PRIMARY KEY (`auth_id`),
+                                               KEY `FK_customer_auth_customer` (`customer_id`),
+                                               CONSTRAINT `FK_customer_auth_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Data exporting was unselected.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

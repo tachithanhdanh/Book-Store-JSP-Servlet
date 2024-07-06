@@ -31,7 +31,7 @@
 </head>
 <body>
     <%
-        if (session.getAttribute("customer") != null) {
+        if (session.getAttribute("loggedCustomer") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
         }
     %>

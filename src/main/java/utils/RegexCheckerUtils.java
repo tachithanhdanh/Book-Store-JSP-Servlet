@@ -10,8 +10,9 @@ public class RegexCheckerUtils {
         return username.matches(usernameRegex);
     }
 
+    // return true if password is invalid
     public static boolean checkPassword(String password) {
-        return password.matches(passwordRegex);
+        return !password.matches(passwordRegex);
     }
 
     public static boolean checkEmail(String email) {

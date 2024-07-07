@@ -11,6 +11,7 @@ import listener.SessionListener;
 import model.Customer;
 import model.CustomerAuth;
 import org.apache.commons.lang3.RandomStringUtils;
+import utils.CookiesGeneratorUtils;
 import utils.HashGeneratorUtils;
 import utils.RegexCheckerUtils;
 
@@ -64,31 +65,8 @@ public class AccountController extends HttpServlet {
             SessionListener.addSession(customer.getCustomerId(), session);
 //            url = "/home";
             if (stayLoggedIn) {
-                // Create new token (selector and validator)
-                CustomerAuth newToken = new CustomerAuth();
-
-                String selector = RandomStringUtils.randomAlphanumeric(12);
-                String rawValidator = RandomStringUtils.randomAlphanumeric(64);
-                String hashedValidator = null;
-                hashedValidator = HashGeneratorUtils.generateSHA256(rawValidator);
-
-                newToken.setSelector(selector);
-                newToken.setValidator(hashedValidator);
-                newToken.setCustomer(customer);
-
-                // Save the token to the database
-                CustomerAuthDAO customerAuthDAO = new CustomerAuthDAOImpl();
-                customerAuthDAO.insert(newToken);
-
-                // Create cookies
-                Cookie selectorCookie = new Cookie("selector", selector);
-                selectorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
-                Cookie validatorCookie = new Cookie("validator", rawValidator);
-                validatorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
-
-                // add cookies to the response
-                response.addCookie(selectorCookie);
-                response.addCookie(validatorCookie);
+                // Create cookies to store logged-in status
+                CookiesGeneratorUtils.generateStayLoggedInCookies(response, customer);
             }
         } else {
             session.setAttribute("error", "Invalid username or password!");
@@ -139,7 +117,7 @@ public class AccountController extends HttpServlet {
             errorPasswordConfirm = "Passwords do not match!";
         }
 
-        if (!RegexCheckerUtils.checkPassword(password)) {
+        if (RegexCheckerUtils.checkPassword(password)) {
             errorPassword = "Choose a more secure password. It should be at least 8 characters and difficult for others to guess.";
         }
 

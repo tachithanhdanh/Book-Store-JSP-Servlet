@@ -11,6 +11,7 @@ import listener.SessionListener;
 import model.Customer;
 import model.CustomerAuth;
 import org.apache.commons.lang3.RandomStringUtils;
+import utils.CookiesGeneratorUtils;
 import utils.HashGeneratorUtils;
 import utils.RegexCheckerUtils;
 
@@ -87,7 +88,7 @@ public class UserController extends HttpServlet {
             session.setAttribute("errorCurrentPassword", "Current password is incorrect. Please try again.");
             hasError = true;
         }
-        if (!RegexCheckerUtils.checkPassword(newPassword)) {
+        if (RegexCheckerUtils.checkPassword(newPassword)) {
             session.setAttribute("errorNewPassword", "Choose a more secure password. It should be at least 8 characters and difficult for others to guess.");
             hasError = true;
         }
@@ -107,12 +108,14 @@ public class UserController extends HttpServlet {
             // if the password is updated successfully
             if (customerDAO.updatePassword(customer)) {
                 session.setAttribute("message", "Password changed successfully!");
-                // implement the log out all devices feature
+                // implement the log-out all devices feature
                 if (logOutDevices) {
 //                    session.removeAttribute("loggedCustomer");
 //                    session.invalidate();
                     CustomerAuthDAO customerAuthDAO = new CustomerAuthDAOImpl();
                     customerAuthDAO.deleteAllTokens(customer); // delete all tokens from the database
+                    // create new cookies to store login information in the browser and database
+                    CookiesGeneratorUtils.generateStayLoggedInCookies(response, customer);
 
                     // create a secret token to send request to logout-all servlet
                     String token = RandomStringUtils.randomAlphanumeric(12);

@@ -256,6 +256,35 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    public boolean updatePassword(Customer customer) {
+        int result = 0;
+        try {
+            // Step 1: Open a database connection
+            Connection con = JDBCUtil.getConnection();
+
+            // Step 2: Create the statement
+            String sql = "UPDATE customer SET password=? WHERE customer_id=?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, customer.getPassword());
+            st.setString(2, customer.getCustomerId());
+
+            // Step 3: Execute the SQL query
+            result = st.executeUpdate();
+
+            // Step 4: Process the result
+            System.out.println("Password updated for customer: " + customer.getUsername());
+            System.out.println("(" + result + " row(s) affected)\n");
+
+            // Step 5: Close the connection
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            System.out.println("Update password failed for customer");
+            System.out.println(e.getMessage());
+        }
+        return result > 0;
+    }
+
+    @Override
     public Customer extractFromResultSet(ResultSet rs) throws SQLException {
         String customerId = rs.getString("customer_id");
         String username = rs.getString("username");

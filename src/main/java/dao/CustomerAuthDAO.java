@@ -1,10 +1,12 @@
 package dao;
 
+import model.Customer;
 import model.CustomerAuth;
 
 public interface CustomerAuthDAO {
-    public int insert(CustomerAuth customerAuth);
-    public CustomerAuth selectBySelector(String selector);
-    public int update(CustomerAuth customerAuth);
-    public int deleteBySelector(String selector);
+    int insert(CustomerAuth customerAuth);
+    CustomerAuth selectBySelector(String selector);
+    int update(CustomerAuth customerAuth);
+    int deleteBySelector(String selector);
+    int deleteAllTokens(Customer customer);
 }

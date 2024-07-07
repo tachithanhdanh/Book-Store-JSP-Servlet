@@ -1,6 +1,5 @@
 package utils;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -29,11 +28,11 @@ public class HashGeneratorUtils {
         return hashString(message, "SHA-256");
     }
 
-    public static String generateSHA256withSalt(String message, String salt) {
+    public static String generateSHA256WithSalt(String message, String salt) {
         return hashString(message + salt, "SHA-256");
     }
 
-    public static String generateSHA256withDefaultSalt(String message) {
+    public static String generateSHA256DefaultSalt(String message) {
         return hashString(message + HashGeneratorUtils.salt, "SHA-256");
     }
 

@@ -5,6 +5,7 @@ import dao.CustomerAuthDAOImpl;
 import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
 import model.Customer;
+import listener.SessionListener;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -25,7 +26,7 @@ public class Login extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        password = HashGeneratorUtils.generateSHA256withDefaultSalt(password);
+        password = HashGeneratorUtils.generateSHA256DefaultSalt(password);
         boolean stayLoggedIn = "true".equals(request.getParameter("stayLoggedIn"));
 
         CustomerDAO customerDAO = new CustomerDAOImpl();
@@ -38,6 +39,8 @@ public class Login extends HttpServlet {
         }
         if (customer != null) {
             session.setAttribute("loggedCustomer", customer);
+            // Save sessionId and userId to the session listener
+            SessionListener.addSession(customer.getCustomerId(), session);
 //            url = "/home";
             if (stayLoggedIn) {
                 // Create new token (selector and validator)

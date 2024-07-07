@@ -30,6 +30,11 @@
     </style>
 </head>
 <body>
+<%
+    response.setHeader("Pragma", "no-cache");
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Expires", "0");
+%>
     <%
         if (session.getAttribute("loggedCustomer") != null) {
             response.sendRedirect(request.getContextPath() + "/home");
@@ -50,6 +55,7 @@
                     <div class="mb-3">
                         <label for="password" class="form-label">Password<span class="required">*</span></label>
                         <input type="password" class="form-control" id="password" name="password" aria-describedby="passwordHelp" required>
+                        <div id="errorPassword" class="required">${errorPassword}</div>
                         <div id="passwordHelp" class="form-text" style="display: none">Password must be at least 8 characters long, contain at least one lowercase letter, one uppercase letter, one digit, and one special character
                         </div>
                     </div>

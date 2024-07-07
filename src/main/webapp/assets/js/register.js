@@ -1,5 +1,6 @@
 const password = document.querySelector('#password');
 const passwordConfirm = document.querySelector('#passwordConfirm');
+const errorPassword = document.querySelector('#errorPassword');
 const errorPasswordConfirm = document.querySelector('#errorPasswordConfirm');
 const username = document.querySelector('#username');
 const errorUsername = document.querySelector('#errorUsername');
@@ -29,6 +30,19 @@ password.addEventListener('keyup', (e) => {
     }
 });
 
+password.addEventListener('keyup', (e) => {
+    if (!passwordRegex.test(e.target.value)) {
+        passwordHelp.style.display = "block";
+    } else {
+        passwordHelp.style.display = "none";
+    }
+});
+
+password.addEventListener('keyup', (e) => {
+    console.log(e.target.value);
+    errorPassword.innerHTML = "";
+});
+
 username.addEventListener('keyup', (e) => {
     if (e.target.value) {
         errorUsername.innerHTML = "";
@@ -40,14 +54,6 @@ username.addEventListener('keyup', (e) => {
         usernameHelp.style.display = "block";
     } else {
         usernameHelp.style.display = "none";
-    }
-});
-
-password.addEventListener('keyup', (e) => {
-    if (!passwordRegex.test(e.target.value)) {
-        passwordHelp.style.display = "block";
-    } else {
-        passwordHelp.style.display = "none";
     }
 });
 
@@ -80,7 +86,3 @@ submitButton.addEventListener('click', (e) => {
 acceptTermCondition.addEventListener('click', (e) => {
     submitButton.disabled = !e.target.checked;
 });
-
-
-
-

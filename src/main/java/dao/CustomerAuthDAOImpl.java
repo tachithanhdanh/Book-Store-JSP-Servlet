@@ -133,4 +133,31 @@ public class CustomerAuthDAOImpl implements CustomerAuthDAO {
         }
         return result;
     }
+
+    public int deleteAllTokens(Customer customer) {
+        int result = 0;
+        try {
+            // Step 1: Open a database connection
+            Connection con = JDBCUtil.getConnection();
+
+            // Step 2: Create the statement
+            String sql = "DELETE FROM customer_auth WHERE customer_id = ?";
+            PreparedStatement st = con.prepareStatement(sql);
+            st.setString(1, customer.getCustomerId());
+
+            // Step 3: Execute the SQL query
+            result = st.executeUpdate();
+
+            // Step 4: Process the result
+            System.out.println("Username: " + customer.getUsername());
+            System.out.println("Number of customer authentication tokens deleted: " + result);
+
+            // Step 5: Close the connection
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            System.out.println("Delete all failed for customer auth");
+            System.out.println(e.getMessage());
+        }
+        return result;
+    }
 }

@@ -1,4 +1,4 @@
-package controller;
+package filter;
 
 import dao.CustomerAuthDAO;
 import dao.CustomerAuthDAOImpl;

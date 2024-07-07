@@ -7,14 +7,41 @@ const errorNewPasswordRetype = document.getElementById('errorNewPasswordRetype')
 const changePasswordBtn = document.getElementById('changePasswordBtn');
 const formFloatingList = document.getElementsByClassName('form-floating');
 
-let isPasswordMatch = false;
-let isPasswordSecure = false;
+const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+let isPasswordMatch = newPassword && newPassword.value === newPasswordRetype.value;
+let isPasswordSecure = newPassword && passwordRegex.test(newPassword.value);
 let isPasswordEmpty = true;
 
 const passwordElements = [currentPassword, newPassword, newPasswordRetype];
 const newPasswordElements = [newPassword, newPasswordRetype];
+const errorElements = [errorCurrentPassword, errorNewPassword, errorNewPasswordRetype];
 
-const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+
+for (let i = 0; i < errorElements.length; i++) {
+    if (errorElements[i].innerHTML) {
+        formFloatingList[i].classList.add('is-invalid');
+        passwordElements[i].classList.add('is-invalid');
+    }
+}
+
+currentPassword.addEventListener('keyup', () => {
+    if (currentPassword.value && currentPassword.value.length < 8) {
+        errorCurrentPassword.innerHTML = "Password is too short!";
+        formFloatingList[0].classList.add('is-invalid');
+        currentPassword.classList.add('is-invalid');
+    } else {
+        errorCurrentPassword.innerHTML = "";
+        formFloatingList[0].classList.remove('is-invalid');
+        currentPassword.classList.remove('is-invalid');
+    }
+});
+
+currentPassword.addEventListener('keyup', () => {
+    errorCurrentPassword.innerHTML = "";
+    formFloatingList[0].classList.remove('is-invalid');
+    currentPassword.classList.remove('is-invalid');
+});
 
 newPasswordElements.forEach((element) => {
     element.addEventListener('keyup', () => {

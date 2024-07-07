@@ -11,6 +11,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.ServletException;
 import utils.HashGeneratorUtils;
+import utils.RegexCheckerUtils;
 
 @WebServlet(name = "Register", value = "/register-servlet")
 public class Register extends HttpServlet {
@@ -33,25 +34,13 @@ public class Register extends HttpServlet {
         String email = request.getParameter("email");
         String subscribeToNewsletter = request.getParameter("subscribeToNewsletter");
 
-        request.setAttribute("username", username);
-        request.setAttribute("fullName", fullName);
-        request.setAttribute("gender", gender);
-        request.setAttribute("dateOfBirth", dateOfBirth);
-        request.setAttribute("billingAddress", billingAddress);
-        request.setAttribute("shippingAddress", shippingAddress);
-        request.setAttribute("invoiceAddress", invoiceAddress);
-        request.setAttribute("phoneNumber", phoneNumber);
-        request.setAttribute("email", email);
-        request.setAttribute("subscribeToNewsletter", subscribeToNewsletter);
+        HttpSession session = request.getSession();
 
         String errorUsername = "";
         String errorPasswordConfirm = "";
+        String errorPassword = "";
 
-        String usernameRegex = "^[a-z][a-z0-9]{5,29}$";
-        String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$";
-        String emailRegex = "^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6})*$";
-
-        if (!username.matches(usernameRegex)) {
+        if (!RegexCheckerUtils.checkUsername(username)) {
             errorUsername = "Invalid username!";
         } else {
             CustomerDAO customerDAO = new CustomerDAOImpl();
@@ -64,23 +53,39 @@ public class Register extends HttpServlet {
             errorPasswordConfirm = "Passwords do not match!";
         }
 
+        if (!RegexCheckerUtils.checkPassword(password)) {
+            errorPassword = "Choose a more secure password. It should be at least 8 characters and difficult for others to guess.";
+        }
+
         String url = "";
 
-        if (!errorUsername.isEmpty() || !errorPasswordConfirm.isEmpty()) {
+        if (!errorUsername.isEmpty() || !errorPasswordConfirm.isEmpty() || !errorPassword.isEmpty()) {
             url = "/register";
-            request.setAttribute("errorUsername", errorUsername);
-            request.setAttribute("errorPasswordConfirm", errorPasswordConfirm);
+            session.setAttribute("username", username);
+            session.setAttribute("fullName", fullName);
+            session.setAttribute("gender", gender);
+            session.setAttribute("dateOfBirth", dateOfBirth);
+            session.setAttribute("billingAddress", billingAddress);
+            session.setAttribute("shippingAddress", shippingAddress);
+            session.setAttribute("invoiceAddress", invoiceAddress);
+            session.setAttribute("phoneNumber", phoneNumber);
+            session.setAttribute("email", email);
+            session.setAttribute("subscribeToNewsletter", subscribeToNewsletter);
+            session.setAttribute("errorUsername", errorUsername);
+            session.setAttribute("errorPasswordConfirm", errorPasswordConfirm);
+            session.setAttribute("errorPassword", errorPassword);
         } else {
             // Create a new customer
             // Insert the new customer into the database
             // Redirect to the register-success page
 //            url = "/register-success";
             url = "/login";
-            HttpSession session = request.getSession();
+            session.invalidate();
+            session = request.getSession();
             session.setAttribute("error", "Registration successful! Please login to continue.");
             Random rd = new Random();
             String customerId = "" + System.currentTimeMillis() + rd.nextInt(1000);
-            password = HashGeneratorUtils.generateSHA256withDefaultSalt(password);
+            password = HashGeneratorUtils.generateSHA256DefaultSalt(password);
             Customer customer = new Customer(customerId, username, password,
                     fullName, gender, billingAddress,
                     shippingAddress, invoiceAddress,
@@ -91,8 +96,9 @@ public class Register extends HttpServlet {
             customerDAO.insert(customer);
         }
 
-        this.getServletContext().getRequestDispatcher(url).forward(request, response);
+//        this.getServletContext().getRequestDispatcher(url).forward(request, response);
 
+        response.sendRedirect(url);
     }
 
     @Override

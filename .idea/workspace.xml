@@ -10,25 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b84d0966-5280-4071-bb75-6bd488392bb4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controller/LogoutAll.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/listener/SessionListener.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utils/RegexCheckerUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/ChangePassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ChangePassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LoggedInFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/LoggedInFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerAuthDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerAuthDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerAuthDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerAuthDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/default-password" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/default-password" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/HashGeneratorUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/HashGeneratorUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LogoutAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LogoutAll.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/change-password.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/change-password.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/change-password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user/change-password.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,7 +361,7 @@
       <workItem from="1720065718214" duration="10020000" />
       <workItem from="1720250769662" duration="14306000" />
       <workItem from="1720272701597" duration="9102000" />
-      <workItem from="1720315578676" duration="13056000" />
+      <workItem from="1720315578676" duration="14319000" />
     </task>
     <servers />
   </component>

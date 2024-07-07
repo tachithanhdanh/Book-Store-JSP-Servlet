@@ -18,9 +18,6 @@ public class LogoutAll extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
-        String userId = customer.getCustomerId(); // Get user ID from the current session or request
-
         // Get token from query string
         String token = request.getParameter("token");
 
@@ -28,10 +25,14 @@ public class LogoutAll extends HttpServlet {
         HttpSession currentSession = request.getSession();
         String sessionToken = (String) currentSession.getAttribute("token");
 
+        // prevent CSRF attack
         if (token == null || !token.equals(sessionToken)) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Invalid token");
             return;
         }
+
+        Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+        String userId = customer.getCustomerId(); // Get user ID from the current session or request
 
         CopyOnWriteArrayList<String> sessionIds = SessionListener.getSessions(userId);
 
@@ -45,6 +46,7 @@ public class LogoutAll extends HttpServlet {
         }
 
         currentSession.setAttribute("message", "Password changed successfully! All other sessions are logged out.");
+        currentSession.removeAttribute("token"); // token is no longer needed
         response.sendRedirect("/user/change-password.jsp");
     }
 }

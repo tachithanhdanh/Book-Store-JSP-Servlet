@@ -9,15 +9,18 @@ const formFloatingList = document.getElementsByClassName('form-floating');
 
 const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
+// Check if password is valid
 let isPasswordMatch = newPassword && newPassword.value === newPasswordRetype.value;
 let isPasswordSecure = newPassword && passwordRegex.test(newPassword.value);
 let isPasswordEmpty = true;
 
+// Elements to check for errors
 const passwordElements = [currentPassword, newPassword, newPasswordRetype];
 const newPasswordElements = [newPassword, newPasswordRetype];
 const errorElements = [errorCurrentPassword, errorNewPassword, errorNewPasswordRetype];
 
-
+// Check if there is any error message
+// If there is, add is-invalid class to the form-floating and password elements
 for (let i = 0; i < errorElements.length; i++) {
     if (errorElements[i].innerHTML) {
         formFloatingList[i].classList.add('is-invalid');
@@ -25,24 +28,14 @@ for (let i = 0; i < errorElements.length; i++) {
     }
 }
 
-currentPassword.addEventListener('keyup', () => {
-    if (currentPassword.value && currentPassword.value.length < 8) {
-        errorCurrentPassword.innerHTML = "Password is too short!";
-        formFloatingList[0].classList.add('is-invalid');
-        currentPassword.classList.add('is-invalid');
-    } else {
-        errorCurrentPassword.innerHTML = "";
-        formFloatingList[0].classList.remove('is-invalid');
-        currentPassword.classList.remove('is-invalid');
-    }
-});
-
+// removes backend error message when user starts typing
 currentPassword.addEventListener('keyup', () => {
     errorCurrentPassword.innerHTML = "";
     formFloatingList[0].classList.remove('is-invalid');
     currentPassword.classList.remove('is-invalid');
 });
 
+// if password does not match, add is-invalid class to the form-floating and password elements
 newPasswordElements.forEach((element) => {
     element.addEventListener('keyup', () => {
         if (newPasswordRetype.value && newPassword.value !== newPasswordRetype.value) {
@@ -59,6 +52,7 @@ newPasswordElements.forEach((element) => {
     });
 });
 
+// if password is not secure, add is-invalid class to the form-floating and password elements
 newPassword.addEventListener('keyup', () => {
     if (newPassword.value && !passwordRegex.test(newPassword.value)) {
         errorNewPassword.innerHTML = "Choose a more secure password that you don't use anywhere else. It should be at least 8 characters and difficult for others to guess.";
@@ -73,6 +67,7 @@ newPassword.addEventListener('keyup', () => {
     }
 });
 
+// Check if password is empty
 function checkEmptyPassword() {
     let isEmpty = false;
     passwordElements.forEach((element) => {
@@ -83,6 +78,7 @@ function checkEmptyPassword() {
     return isEmpty;
 }
 
+// Disable change password button if password is empty, does not match, or not secure
 passwordElements.forEach((element) => {
     element.addEventListener('keyup', () => {
         isPasswordEmpty = checkEmptyPassword();

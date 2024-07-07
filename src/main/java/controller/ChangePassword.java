@@ -29,9 +29,10 @@ public class ChangePassword extends HttpServlet {
         String newPasswordRetype = request.getParameter("newPasswordRetype");
         boolean logOutDevices = "true".equals(request.getParameter("logOutDevices"));
         HttpSession session = request.getSession();
-        String url = "user/change-password.jsp";
+        String url = "user/change-password.jsp"; // default url
         Customer customer = (Customer) session.getAttribute("loggedCustomer");
 
+        // check if the user is logged in
         if (customer == null) {
             session.setAttribute("error", "You need to login to change password!");
             response.sendRedirect("login.jsp");
@@ -39,9 +40,17 @@ public class ChangePassword extends HttpServlet {
         }
 
         String currentPasswordHash = HashGeneratorUtils.generateSHA256DefaultSalt(currentPassword);
+
+        // get the customer from the database because the password might be changed by another device
+        // and the session object might not be updated
         Customer customerFromDB = new CustomerDAOImpl().selectById(customer);
+
+        // update the session object
         session.setAttribute("loggedCustomer", customerFromDB);
+
+        // get the password hash from the database
         String databasePasswordHash = customerFromDB.getPassword();
+
         boolean hasError = false;
         if (!newPassword.equals(newPasswordRetype)) {
             session.setAttribute("errorNewPasswordRetype", "Password does not match! Enter new password again here.");
@@ -59,6 +68,7 @@ public class ChangePassword extends HttpServlet {
             session.setAttribute("errorNewPassword", "New password must be different from the current password.");
             hasError = true;
         }
+
         if (hasError) {
             session.setAttribute("currentPassword", currentPassword);
             session.setAttribute("newPassword", newPassword);
@@ -67,13 +77,17 @@ public class ChangePassword extends HttpServlet {
             customer.setPassword(HashGeneratorUtils.generateSHA256DefaultSalt(newPassword));
             session.setAttribute("loggedCustomer", customer);
             CustomerDAO customerDAO = new CustomerDAOImpl();
+            // if the password is updated successfully
             if (customerDAO.updatePassword(customer)) {
                 session.setAttribute("message", "Password changed successfully!");
+                // implement the log out all devices feature
                 if (logOutDevices) {
 //                    session.removeAttribute("loggedCustomer");
 //                    session.invalidate();
                     CustomerAuthDAO customerAuthDAO = new CustomerAuthDAOImpl();
-                    customerAuthDAO.deleteAllTokens(customer);
+                    customerAuthDAO.deleteAllTokens(customer); // delete all tokens from the database
+
+                    // create a secret token to send request to logout-all servlet
                     String token = RandomStringUtils.randomAlphanumeric(12);
                     session.setAttribute("token", token);
                     url = "/logout-all" + "?token=" + token;

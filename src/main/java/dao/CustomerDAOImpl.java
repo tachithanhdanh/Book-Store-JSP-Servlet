@@ -285,6 +285,47 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    public boolean updateInformation(Customer customer) {
+        int result = 0;
+        try {
+            // Step 1: Open a database connection
+            Connection con = JDBCUtil.getConnection();
+
+            // Step 2: Create the statement
+            String sql = "UPDATE customer SET "
+                    + "full_name=?,"
+                    + "gender=?, billing_address=?, shipping_address=?,"
+                    + "invoice_address=?, date_of_birth=?, phone_number=?,"
+                    + "email=?, subscribe_to_newsletter=? "
+                    + "WHERE customer_id=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, customer.getFullName());
+            ps.setString(2, customer.getGender());
+            ps.setString(3, customer.getBillingAddress());
+            ps.setString(4, customer.getShippingAddress());
+            ps.setString(5, customer.getInvoiceAddress());
+            ps.setDate(6, customer.getDateOfBirth());
+            ps.setString(7, customer.getPhoneNumber());
+            ps.setString(8, customer.getEmail());
+            ps.setBoolean(9, customer.isSubscribeToNewsletter());
+            ps.setString(10, customer.getCustomerId());
+
+            // Step 3: Execute the SQL query
+            result = ps.executeUpdate();
+
+            // Step 4: Process the result
+            System.out.println("Information updated for customer: " + customer.getUsername());
+
+            // Step 5: Close the connection
+            JDBCUtil.closeConnection(con);
+        } catch (SQLException e) {
+            System.out.println("Update information failed for customer");
+            System.out.println(e.getMessage());
+        }
+        return result > 0;
+    }
+
+    @Override
     public Customer extractFromResultSet(ResultSet rs) throws SQLException {
         String customerId = rs.getString("customer_id");
         String username = rs.getString("username");

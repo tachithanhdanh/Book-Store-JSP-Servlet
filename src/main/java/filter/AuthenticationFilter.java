@@ -14,7 +14,7 @@ import utils.HashGeneratorUtils;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/*"})
+@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/", "/user/*"})
 public class AuthenticationFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -50,6 +50,7 @@ public class AuthenticationFilter implements Filter {
             }
 
             if (selectorCookie != null && validatorCookie != null && !selectorCookie.getValue().isEmpty()) {
+//                System.out.println("selector: " + selectorCookie.getValue());
                 // get the token from the database
                 CustomerAuthDAO customerAuthDAO = new CustomerAuthDAOImpl();
                 CustomerAuth customerToken = customerAuthDAO.selectBySelector(selectorCookie.getValue());

@@ -1,26 +1,112 @@
 package controller;
 
-import java.io.IOException;
-import java.util.Random;
-import java.sql.Date;
-
-import model.Customer;
+import dao.CustomerAuthDAO;
+import dao.CustomerAuthDAOImpl;
 import dao.CustomerDAO;
 import dao.CustomerDAOImpl;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import jakarta.servlet.ServletException;
+import listener.SessionListener;
+import model.Customer;
+import model.CustomerAuth;
+import org.apache.commons.lang3.RandomStringUtils;
 import utils.HashGeneratorUtils;
 import utils.RegexCheckerUtils;
 
-@WebServlet(name = "Register", value = "/register-servlet")
-public class Register extends HttpServlet {
+import java.io.IOException;
+import java.sql.Date;
+import java.util.Random;
 
-    public void init() {
+@WebServlet(name = "LoginController", value = "/account")
+public class AccountController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            response.sendRedirect("/");
+        } else {
+            switch (action) {
+                case "login":
+                    login(request, response);
+                    break;
+                case "register":
+                    register(request, response);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    protected void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        password = HashGeneratorUtils.generateSHA256DefaultSalt(password);
+        boolean stayLoggedIn = "true".equals(request.getParameter("stayLoggedIn"));
+
+        CustomerDAO customerDAO = new CustomerDAOImpl();
+
+        Customer customer = customerDAO.selectByUsernameAndPassword(username, password);
+        HttpSession session = request.getSession();
+        String url = request.getParameter("redirect");
+        if (url == null || url.isEmpty()) {
+            url = "/home";
+        }
+        if (customer != null) {
+            session.setAttribute("loggedCustomer", customer);
+            // Save sessionId and userId to the session listener
+            SessionListener.addSession(customer.getCustomerId(), session);
+//            url = "/home";
+            if (stayLoggedIn) {
+                // Create new token (selector and validator)
+                CustomerAuth newToken = new CustomerAuth();
+
+                String selector = RandomStringUtils.randomAlphanumeric(12);
+                String rawValidator = RandomStringUtils.randomAlphanumeric(64);
+                String hashedValidator = null;
+                hashedValidator = HashGeneratorUtils.generateSHA256(rawValidator);
+
+                newToken.setSelector(selector);
+                newToken.setValidator(hashedValidator);
+                newToken.setCustomer(customer);
+
+                // Save the token to the database
+                CustomerAuthDAO customerAuthDAO = new CustomerAuthDAOImpl();
+                customerAuthDAO.insert(newToken);
+
+                // Create cookies
+                Cookie selectorCookie = new Cookie("selector", selector);
+                selectorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
+                Cookie validatorCookie = new Cookie("validator", rawValidator);
+                validatorCookie.setMaxAge(60 * 60 * 24 * 7); // 7 days
+
+                // add cookies to the response
+                response.addCookie(selectorCookie);
+                response.addCookie(validatorCookie);
+            }
+        } else {
+            session.setAttribute("error", "Invalid username or password!");
+            url = "/login";
+        }
+        // Prevent back button
+        // for HTTP 1.1 and after
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        // HTTP 1.0
+        response.setHeader("Pragma", "no-cache");
+        // Proxy Server
+        response.setHeader("Expires", "0");
+        System.out.println("Redirecting to: " + url);
+
+        response.sendRedirect(url);
+    }
+
+    protected void register(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String passwordConfirm = request.getParameter("passwordConfirm");
@@ -91,7 +177,7 @@ public class Register extends HttpServlet {
                     shippingAddress, invoiceAddress,
                     Date.valueOf(dateOfBirth),
                     phoneNumber, email,
-                    subscribeToNewsletter != null);
+                    Boolean.parseBoolean(subscribeToNewsletter));
             CustomerDAO customerDAO = new CustomerDAOImpl();
             customerDAO.insert(customer);
         }
@@ -99,13 +185,5 @@ public class Register extends HttpServlet {
 //        this.getServletContext().getRequestDispatcher(url).forward(request, response);
 
         response.sendRedirect(url);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/register");
-    }
-
-    public void destroy() {
     }
 }

@@ -10,10 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b84d0966-5280-4071-bb75-6bd488392bb4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/user/change-info.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/user/profile.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ChangePassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/ChangePassword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LogoutAll.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/LogoutAll.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/change-password.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/change-password.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/ChangePassword.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AccountController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Logout.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/LogoutAll.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/Register.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/filter/LoggedInFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/LoggedInFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register-success.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/change-password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user/change-password.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user/userOnlyTest.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +44,11 @@
         <option value="Add new Servlet" />
         <option value="CSS File" />
         <option value="Servlet Filter" />
-        <option value="Jsp File" />
         <option value="JavaScript File" />
         <option value="Servlet Listener" />
         <option value="Class" />
         <option value="Servlet" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -130,11 +146,11 @@
       <recent name="" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\account" />
       <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\user" />
       <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\assets" />
       <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp" />
       <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\WEB-INF" />
-      <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\bootstrap" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="dao" />
@@ -361,7 +377,8 @@
       <workItem from="1720065718214" duration="10020000" />
       <workItem from="1720250769662" duration="14306000" />
       <workItem from="1720272701597" duration="9102000" />
-      <workItem from="1720315578676" duration="14319000" />
+      <workItem from="1720315578676" duration="18090000" />
+      <workItem from="1720353790899" duration="2304000" />
     </task>
     <servers />
   </component>

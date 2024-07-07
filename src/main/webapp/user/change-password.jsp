@@ -21,7 +21,8 @@
         <h2 class="text-center">CHANGE PASSWORD</h2>
         <p class="text-center" style="color: red">${message}</p>
         <p class="text-center">Password must be at least 8 characters long, contains at least one lowercase letter, one uppercase letter, one digit, and one special character (#?!@$%^&*-).</p>
-        <form method="post" action="${pageContext.request.contextPath}/change-password-servlet">
+        <form method="post" action="${pageContext.request.contextPath}/user">
+            <input type="hidden" name="action" value="change-password">
             <div class="mb-3 form-floating">
                 <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Current password" required value="${currentPassword}">
                 <label for="currentPassword" class="form-label">Current password</label>

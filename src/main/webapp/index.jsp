@@ -48,7 +48,7 @@
                 <button class="btn btn-outline-success me-2" type="submit">Tìm</button>
                     <c:if test="${loggedCustomer == null}">
                 <div class="w-50 text-center">
-                        <a href="${pageContext.request.contextPath}/login" class="btn btn-primary active" role="button" aria-pressed="true" style="white-space: nowrap;">
+                        <a href="${pageContext.request.contextPath}/account/login.jsp" class="btn btn-primary active" role="button" aria-pressed="true" style="white-space: nowrap;">
                             Log in
                         </a>
                 </div>
@@ -63,10 +63,11 @@
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><a class="dropdown-item" href="#">My order</a></li>
                                 <li><a class="dropdown-item" href="#">Notifications</a></li>
-                                <li><a class="dropdown-item" href="#">Account information</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/profile.jsp">Account information</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/change-info.jsp">Change information</a></li>
                                 <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user/change-password.jsp">Change password</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                                <li><a class="dropdown-item" href="${pageContext.request.contextPath}/user?action=logout">Logout</a></li>
                             </ul>
                         </div>
                     </c:if>

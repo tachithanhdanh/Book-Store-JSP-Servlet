@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "LoggedInFilter", urlPatterns = {"/login/*", "/register/*", "/login", "/login.jsp", "/register", "/register.jsp"})
+@WebFilter(filterName = "LoggedInFilter", urlPatterns = {"/account/*"})
 public class LoggedInFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
         System.out.println("Filter initialized");

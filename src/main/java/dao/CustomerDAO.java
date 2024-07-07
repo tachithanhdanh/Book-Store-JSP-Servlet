@@ -31,6 +31,7 @@ public interface CustomerDAO extends DAOInterface<Customer> {
     @Override
     int update(Customer customer);
     boolean updatePassword(Customer customer);
+    boolean updateInformation(Customer customer);
 
     @Override
     Customer extractFromResultSet(java.sql.ResultSet rs) throws SQLException;

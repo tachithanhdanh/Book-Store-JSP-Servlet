@@ -17,7 +17,8 @@
 </head>
 <body class="d-flex align-items-center py-4 bg-body-tertiary">
 <main class="form-signin w-100 m-auto">
-    <form action="${pageContext.request.contextPath}/login-servlet" class="text-center" method="post">
+    <form action="${pageContext.request.contextPath}/account" class="text-center" method="post">
+        <input type="hidden" name="action" value="login">
         <img class="mb-4" src="${pageContext.request.contextPath}/img/login/logo.png" alt="" width="50%">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <p style="color: red;">${error}</p>
@@ -41,7 +42,7 @@
             </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p>Don't have an account?<a href="${pageContext.request.contextPath}/register.jsp" class="mt-3">Register now</a></p>
+        <p>Don't have an account?<a href="${pageContext.request.contextPath}/account/register.jsp" class="mt-3">Register now</a></p>
         <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
     </form>
 </main>

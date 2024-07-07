@@ -42,7 +42,8 @@
     %>
     <div class="container">
         <div class="h1 text-lg-center mt-3">REGISTER NEW ACCOUNT</div> <!-- h1: heading 1, text larger center -->
-        <form method="post" action="${pageContext.request.contextPath}/register-servlet">
+        <form method="post" action="${pageContext.request.contextPath}/account">
+            <input type="hidden" name="action" value="register">
             <div class="row"> <!-- row: a row in a grid system -->
                 <div class="col-lg-6"> <!-- col-lg-6: column large 6, only apply for screen with width >= 996px -->
                     <div class="h3">Account</div> <!-- h3: heading 3 -->
@@ -127,7 +128,7 @@
                         <label class="form-check-label" for="subscribeToNewsletter">
                             Receive promotional emails
                         </label>
-                        <input class="form-check-input" type="checkbox" value="" id="subscribeToNewsletter">
+                        <input class="form-check-input" type="checkbox" value="true" id="subscribeToNewsletter" name="subscribeToNewsletter">
                     </div>
                     <input id="submit" class="btn btn-primary" type="submit" value="Submit" disabled>
                     <div>Already registered? <a href="${pageContext.request.contextPath}/login">Login here</a></div>

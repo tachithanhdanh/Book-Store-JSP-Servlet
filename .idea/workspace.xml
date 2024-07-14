@@ -10,18 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b84d0966-5280-4071-bb75-6bd488392bb4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/RequestPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/ResetPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/TokenForgetPasswordDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/dao/TokenForgetPasswordDAOImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/TokenForgetPassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/account/request-password.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/request-password.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/database/default-password" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/default-password" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/filter/AuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/database/schema.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/database/schema.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utils/EmailUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/EmailUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/account/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/register.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/account/reset-password.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/account/reset-password.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/assets/js/reset-password.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/assets/js/reset-password.js" afterDir="false" />
     </list>
@@ -33,15 +34,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="JUnit5 Test Class" />
         <option value="Add new Servlet" />
         <option value="CSS File" />
         <option value="Servlet Filter" />
         <option value="Servlet Listener" />
-        <option value="Servlet" />
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Servlet" />
+        <option value="Interface" />
+        <option value="Class" />
         <option value="JavaScript File" />
       </list>
     </option>
@@ -131,6 +132,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="dao" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\img\login" />
       <recent name="D:\github\tachithanhdanh\Web\Java\Java-Servlet-IntelliJ\Book-Store-JSP-Servlet\src\main\webapp\bootstrap" />
@@ -377,7 +381,7 @@
       <workItem from="1720403719261" duration="4383000" />
       <workItem from="1720424817733" duration="1118000" />
       <workItem from="1720766550206" duration="72000" />
-      <workItem from="1720942172892" duration="5810000" />
+      <workItem from="1720942172892" duration="17541000" />
     </task>
     <servers />
   </component>
@@ -406,6 +410,67 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>51</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>61</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/controller/ResetPassword.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Book_Store_JSP_Servlet$AuthorDAOImplTest_selectById.ic" NAME="AuthorDAOImplTest.selectById Coverage Results" MODIFIED="1719550968792" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">

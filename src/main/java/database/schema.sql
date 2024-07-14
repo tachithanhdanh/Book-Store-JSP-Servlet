@@ -130,6 +130,18 @@ CREATE TABLE IF NOT EXISTS `customer_auth` (
                                                CONSTRAINT `FK_customer_auth_customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- Dumping structure for table book_store.token_forget_password
+CREATE TABLE IF NOT EXISTS `token_forget_password` (
+                                                       `id` bigint NOT NULL AUTO_INCREMENT,
+                                                       `customer_id` char(50) NOT NULL,
+                                                       `token` char(255) NOT NULL,
+                                                       `expiry_date` timestamp NOT NULL,
+                                                       `is_used` bit(1) NOT NULL DEFAULT (0),
+                                                       PRIMARY KEY (`id`),
+                                                       KEY `FK__customer` (`customer_id`),
+                                                       CONSTRAINT `FK__customer` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 -- Data exporting was unselected.
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;

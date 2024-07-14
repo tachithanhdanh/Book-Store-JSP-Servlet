@@ -24,22 +24,6 @@ import java.util.Random;
 public class AccountController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    private String host;
-    private String port;
-    private String email;
-    private String name;
-    private String pass;
-
-    @Override
-    public void init() throws ServletException {
-        ServletContext context = getServletContext();
-        host = context.getInitParameter("host");
-        port = context.getInitParameter("port");
-        email = context.getInitParameter("email");
-        name = context.getInitParameter("name");
-        pass = context.getInitParameter("pass");
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request, response);
@@ -187,40 +171,6 @@ public class AccountController extends HttpServlet {
     }
 
     protected void resetPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String recipient = request.getParameter("email");
 
-        String message = "";
-
-        CustomerDAO customerDAO = new CustomerDAOImpl();
-        Customer customer = customerDAO.selectByUsername(username);
-        if (customer != null && customer.getEmail().equals(recipient)) {
-            String newPassword = RandomStringUtils.randomAlphanumeric(12) + "1Aa!";
-            String hashedPassword = HashGeneratorUtils.generateSHA256DefaultSalt(newPassword);
-            customer.setPassword(hashedPassword);
-            customerDAO.update(customer);
-            // Send email to the customer
-            Date today = new Date(System.currentTimeMillis());
-            String subject = "[Bookstore - " + today +"] Your password has been reset!";
-            System.out.println(subject);
-            String content = "Hi, this is your new password: " + newPassword;
-            content += "\t\nNote: for security reason, "
-                    + "you must change your password after logging in.";
-
-            message = "Your password has been reset.<br>Please check your e-mail.";
-            // Redirect to the reset-password-success page
-            try {
-                EmailUtils.sendEmail(host, port, email, name, pass, recipient, subject, content);
-            } catch (Exception e) {
-                System.out.println("Error sending email: " + e.getMessage());
-                message = "There was an error sending the email: " + e.getMessage();
-            }
-        } else {
-            // Redirect to the reset-password page with an error message
-            message = "Invalid username or email!";
-        }
-        HttpSession session = request.getSession();
-        session.setAttribute("message", message);
-        response.sendRedirect("/account/reset-password.jsp");
     }
 }

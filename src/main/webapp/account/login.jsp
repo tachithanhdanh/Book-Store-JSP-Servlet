@@ -42,7 +42,9 @@
             </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p>Don't have an account?<a href="${pageContext.request.contextPath}/account/register.jsp" class="mt-3">Register now</a></p>
+        <p class="mt-3"><a href="${pageContext.request.contextPath}/account/reset-password.jsp">Forgot your password?</a></p>
+        <hr/>
+        <p class="mt-3">Don't have an account?<a href="${pageContext.request.contextPath}/account/register.jsp">Register now</a></p>
         <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2024</p>
     </form>
 </main>

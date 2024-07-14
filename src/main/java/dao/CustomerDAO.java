@@ -12,7 +12,7 @@ public interface CustomerDAO extends DAOInterface<Customer> {
     @Override
     Customer selectById(Customer customer);
 
-    boolean selectByUsername(String username);
+    Customer selectByUsername(String username);
 
     Customer selectByUsernameAndPassword(String username, String password);
 

@@ -66,7 +66,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public boolean selectByUsername(String username) {
+    public Customer selectByUsername(String username) {
         Customer resultCustomer = null;
         try {
             // Step 1: Open a database connection
@@ -89,7 +89,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             System.out.println("Select by id failed for customer");
             System.out.println(e.getMessage());
         }
-        return resultCustomer != null;
+        return resultCustomer;
     }
 
     @Override

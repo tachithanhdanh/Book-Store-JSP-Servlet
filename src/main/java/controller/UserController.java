@@ -60,6 +60,11 @@ public class UserController extends HttpServlet {
         String url = "user/change-password.jsp"; // default url
         Customer customer = (Customer) session.getAttribute("loggedCustomer");
 
+        if (currentPassword == null || newPassword == null || newPasswordRetype == null) {
+            response.sendRedirect("user/change-password.jsp");
+            return;
+        }
+
         // check if the user is logged in
         if (customer == null) {
             session.setAttribute("error", "You need to login to change password!");

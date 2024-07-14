@@ -14,7 +14,7 @@ import utils.HashGeneratorUtils;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/", "/user/*"})
+@WebFilter(filterName = "AuthenticationFilter", urlPatterns = {"/", "/user/*", "/index.jsp", "/home"})
 public class AuthenticationFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -24,7 +24,7 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        System.out.println("AuthenticationFilter called");
+//        System.out.println("AuthenticationFilter called");
 
         // check user's login status via session
         HttpServletRequest httpRequest = (HttpServletRequest) request;

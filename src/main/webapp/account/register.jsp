@@ -113,8 +113,8 @@
                         <input type="tel" class="form-control" id="phoneNumber" name="phoneNumber" value="${phoneNumber}">
                     </div>
                     <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" value="${email}">
+                        <label for="email" class="form-label">Email<span class="required">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" value="${email}" required>
                         <div id="errorEmail" class="required"></div>
                     </div>
                     <hr/>
@@ -131,7 +131,7 @@
                         <input class="form-check-input" type="checkbox" value="true" id="subscribeToNewsletter" name="subscribeToNewsletter">
                     </div>
                     <input id="submit" class="btn btn-primary" type="submit" value="Submit" disabled>
-                    <div>Already registered? <a href="${pageContext.request.contextPath}/login">Login here</a></div>
+                    <div>Already registered? <a href="${pageContext.request.contextPath}/account/login.jsp">Login here</a></div>
                 </div>
             </div>
         </form>

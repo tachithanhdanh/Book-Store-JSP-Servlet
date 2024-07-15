@@ -55,10 +55,11 @@ public class RequestPassword extends HttpServlet {
         if (customer != null && customer.getEmail().equals(recipient)) {
             // Generate a random token
             String token = RandomStringUtils.randomAlphanumeric(20);
+            String hashedToken = HashGeneratorUtils.generateSHA256(token);
             // Insert the token into the database
             TokenForgetPassword tokenForgetPassword = new TokenForgetPassword();
             tokenForgetPassword.setCustomer(customer);
-            tokenForgetPassword.setToken(token);
+            tokenForgetPassword.setToken(hashedToken);
             tokenForgetPassword.setExpiryDate(LocalDateTime.now().plusMinutes(TIME_TO_LIVE));
             tokenForgetPassword.setUsed(false);
 

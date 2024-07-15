@@ -79,7 +79,8 @@ public class ResetPassword extends HttpServlet {
             return null;
         }
         TokenForgetPasswordDAO tokenDAO = new TokenForgetPasswordDAOImpl();
-        TokenForgetPassword tokenForgetPassword = tokenDAO.getToken(token);
+        String hashedToken = HashGeneratorUtils.generateSHA256(token);
+        TokenForgetPassword tokenForgetPassword = tokenDAO.getToken(hashedToken);
         if (tokenForgetPassword == null) {
             session.setAttribute("message", "Invalid token");
         } else if (tokenForgetPassword.isUsed()) {
@@ -87,7 +88,8 @@ public class ResetPassword extends HttpServlet {
         } else if (tokenForgetPassword.getExpiryDate().isBefore(java.time.LocalDateTime.now())) {
             session.setAttribute("message", "Token has expired");
         } else {
-            session.setAttribute("token", tokenForgetPassword.getToken());
+//            session.setAttribute("token", tokenForgetPassword.getToken());
+            session.setAttribute("token", token);
             return tokenForgetPassword;
         }
         return null;

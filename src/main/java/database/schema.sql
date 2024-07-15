@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
                                           `phone_number` varchar(12) DEFAULT NULL,
                                           `email` varchar(512) DEFAULT NULL,
                                           `subscribe_to_newsletter` tinyint DEFAULT NULL,
+                                          `avatar` varchar(255) DEFAULT NULL,
                                           PRIMARY KEY (`customer_id`),
                                           CONSTRAINT `CC1` CHECK (((`gender` = _utf8mb4'Male') or (`gender` = _utf8mb4'Female')))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;

@@ -127,22 +127,10 @@ public class AccountController extends HttpServlet {
         }
 
         String url = "";
+        boolean hasError = false;
 
         if (!errorUsername.isEmpty() || !errorPasswordConfirm.isEmpty() || !errorPassword.isEmpty()) {
-            url = "/account/register.jsp";
-            session.setAttribute("username", username);
-            session.setAttribute("fullName", fullName);
-            session.setAttribute("gender", gender);
-            session.setAttribute("dateOfBirth", dateOfBirth);
-            session.setAttribute("billingAddress", billingAddress);
-            session.setAttribute("shippingAddress", shippingAddress);
-            session.setAttribute("invoiceAddress", invoiceAddress);
-            session.setAttribute("phoneNumber", phoneNumber);
-            session.setAttribute("email", email);
-            session.setAttribute("subscribeToNewsletter", subscribeToNewsletter);
-            session.setAttribute("errorUsername", errorUsername);
-            session.setAttribute("errorPasswordConfirm", errorPasswordConfirm);
-            session.setAttribute("errorPassword", errorPassword);
+            hasError = true;
         } else {
             // Create a new customer
             // Insert the new customer into the database
@@ -160,9 +148,29 @@ public class AccountController extends HttpServlet {
                     shippingAddress, invoiceAddress,
                     Date.valueOf(dateOfBirth),
                     phoneNumber, email,
-                    Boolean.parseBoolean(subscribeToNewsletter));
+                    Boolean.parseBoolean(subscribeToNewsletter), null);
             CustomerDAO customerDAO = new CustomerDAOImpl();
-            customerDAO.insert(customer);
+            if (customerDAO.insert(customer) == 0) {
+                session.setAttribute("message", "Registration failed! Please try again.");
+            }
+        }
+
+        if (hasError) {
+
+            url = "/account/register.jsp";
+            session.setAttribute("username", username);
+            session.setAttribute("fullName", fullName);
+            session.setAttribute("gender", gender);
+            session.setAttribute("dateOfBirth", dateOfBirth);
+            session.setAttribute("billingAddress", billingAddress);
+            session.setAttribute("shippingAddress", shippingAddress);
+            session.setAttribute("invoiceAddress", invoiceAddress);
+            session.setAttribute("phoneNumber", phoneNumber);
+            session.setAttribute("email", email);
+            session.setAttribute("subscribeToNewsletter", subscribeToNewsletter);
+            session.setAttribute("errorUsername", errorUsername);
+            session.setAttribute("errorPasswordConfirm", errorPasswordConfirm);
+            session.setAttribute("errorPassword", errorPassword);
         }
 
 //        this.getServletContext().getRequestDispatcher(url).forward(request, response);

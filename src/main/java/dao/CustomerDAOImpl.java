@@ -132,8 +132,8 @@ public class CustomerDAOImpl implements CustomerDAO {
                     + "customer_id, username, password, full_name,"
                     + "gender, billing_address, shipping_address,"
                     + "invoice_address, date_of_birth, phone_number,"
-                    + "email, subscribe_to_newsletter)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+                    + "email, subscribe_to_newsletter, avatar)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, customer.getCustomerId());
             st.setString(2, customer.getUsername());
@@ -147,6 +147,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             st.setString(10, customer.getPhoneNumber());
             st.setString(11, customer.getEmail());
             st.setBoolean(12, customer.isSubscribeToNewsletter());
+            st.setString(13, customer.getAvatar());
 
             // Step 3: Execute the SQL query
             result = st.executeUpdate();
@@ -222,7 +223,7 @@ public class CustomerDAOImpl implements CustomerDAO {
                     + "username=?, password=?, full_name=?,"
                     + "gender=?, billing_address=?, shipping_address=?,"
                     + "invoice_address=?, date_of_birth=?, phone_number=?,"
-                    + "email=?, subscribe_to_newsletter=? "
+                    + "email=?, subscribe_to_newsletter=?, avatar=? "
                     + "WHERE customer_id=?";
             PreparedStatement st = con.prepareStatement(sql);
 
@@ -237,7 +238,8 @@ public class CustomerDAOImpl implements CustomerDAO {
             st.setString(9, customer.getPhoneNumber());
             st.setString(10, customer.getEmail());
             st.setBoolean(11, customer.isSubscribeToNewsletter());
-            st.setString(12, customer.getCustomerId());
+            st.setString(12, customer.getAvatar());
+            st.setString(13, customer.getCustomerId());
 
             // Step 3: Execute the SQL query
             result = st.executeUpdate();
@@ -338,10 +340,11 @@ public class CustomerDAOImpl implements CustomerDAO {
         Date dateOfBirth = rs.getDate("date_of_birth");
         String phoneNumber = rs.getString("phone_number");
         String email = rs.getString("email");
+        String avatar = rs.getString("avatar");
         boolean subscribeToNewsletter = rs.getBoolean("subscribe_to_newsletter");
         return new Customer(customerId, username, password, fullName,
                 gender, billingAddress, shippingAddress,
                 invoiceAddress, dateOfBirth, phoneNumber,
-                email, subscribeToNewsletter);
+                email, subscribeToNewsletter, avatar);
     }
 }

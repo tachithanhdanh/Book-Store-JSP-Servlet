@@ -95,7 +95,7 @@ public class AuthenticationFilter implements Filter {
         if (!loggedIn && url.startsWith("user")) {
             HttpSession newSession = httpRequest.getSession();
             newSession.setAttribute("error", "You have to log in first to access the page!");
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/login" + "?redirect=" + url);
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/account/login.jsp" + "?redirect=" + url);
             return;
         }
         chain.doFilter(request, response);

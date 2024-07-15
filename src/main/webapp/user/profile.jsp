@@ -1,4 +1,4 @@
-<%--
+<%@ page import="model.Customer" %><%--
   Created by IntelliJ IDEA.
   User: LAPTOP ACER
   Date: 07/07/2024
@@ -91,9 +91,21 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                            <%
+                                Customer loggedCustomer = (Customer) session.getAttribute("loggedCustomer");
+                                String avatar = loggedCustomer.getAvatar();
+                            if (avatar == null || avatar.isEmpty()) {
+                                avatar = "https://bootdey.com/img/Content/avatar/avatar7.png";
+                            } else {
+                                avatar = "/user/img/" + avatar;
+                            }
+                            %>
+                            <img src="<%=avatar%>" alt="Admin" class="rounded-circle border-primary border" width="200" height="200">
                             <div class="mt-3">
                                 <h4>${loggedCustomer.fullName}</h4>
+                            </div>
+                            <div class="mt-3">
+                                <a class="btn btn-primary" target="_blank" href="${pageContext.request.contextPath}/user/change-avatar.jsp">Change Avatar</a>
                             </div>
                         </div>
                     </div>

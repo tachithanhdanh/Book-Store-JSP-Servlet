@@ -42,6 +42,7 @@
     %>
     <div class="container">
         <div class="h1 text-lg-center mt-3">REGISTER NEW ACCOUNT</div> <!-- h1: heading 1, text larger center -->
+        <div class="h5 text-lg-center">${message}</div> <!-- h5: heading 5, text larger center -->
         <form method="post" action="${pageContext.request.contextPath}/account">
             <input type="hidden" name="action" value="register">
             <div class="row"> <!-- row: a row in a grid system -->
@@ -136,5 +137,8 @@
             </div>
         </form>
     </div>
+<%
+    session.removeAttribute("message");
+%>
 </body>
 </html>
